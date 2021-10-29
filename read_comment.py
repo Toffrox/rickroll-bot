@@ -28,7 +28,7 @@ while True:
     try:
         for comment in subreddit.stream.comments(skip_existing=True):
             stats[0] += 1
-            print("Remaining: " + str(r.auth.limits['remaining']) + " Comments reviewed: " + str(stats[0]) + " Rickrolls: " +  str(stats[1]), end='\r')
+            print("Remaining: " + str(r.auth.limits['remaining']) + " Comments reviewed: " + str(stats[0]) + " Rickrolls: " +  str(stats[1]))
             for l in links:
                 if l in comment.body:
                     if comment.author == "RickRollRadar":
