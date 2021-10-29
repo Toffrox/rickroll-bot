@@ -1,10 +1,13 @@
 import praw
 import time
+import pickle
 from rickroll_list import links
 from blacklist import blacklist
 
-comments_read = 0
-rickrolls = 0
+stats = [0, 0]
+
+with open('stats.pk', 'rb') as fi:
+    stats = pickle.load(fi)
 
 r = praw.Reddit('RickRollRadar by /r/Toffrox')
 
@@ -12,12 +15,12 @@ subreddits = "all"
 for s in blacklist:
     subreddits = subreddits + "-" + s
 
-subreddit = r.subreddit("toffrox")
+subreddit = r.subreddit(subreddits)
 
 while True:
     try:
         for comment in subreddit.stream.comments(skip_existing=True):
-            comments_read += 1
+            stats[0] += 1
             print(r.auth.limits)
             for l in links:
                 if l in comment.body:
@@ -25,8 +28,10 @@ while True:
                         break
                     print("Detected Rickroll: ")
                     print(comment.body)
-                    rickrolls += 1
-                    comment.reply("Warning! The comment above has a **rickroll**! Click at your own risk! \n \n ^(I am a bot, warning the world of all rickrolls. Out of " + str(comments_read) + " comments, I have detected " + str(rickrolls) + " rickrolls. You can find more information) [^(here)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)^(.)")
+                    stats[1] += 1
+                    comment.reply("Warning! The comment above has a **rickroll**! Click at your own risk! \n \n ^(I am a bot, warning the world of all rickrolls. Out of " + str(stats[0]) + " comments, I have detected " + str(stats[1]) + " rickrolls. You can find more information) [^(here)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)^(.)")
                     print("Replied")
+            with open('stats.pk', 'wb') as fi:
+                pickle.dump(stats, fi)
     except Exception as e:
         print(str(e))
