@@ -9,7 +9,13 @@ stats = [0, 0]
 with open('stats.pk', 'rb') as fi:
     stats = pickle.load(fi)
 
-r = praw.Reddit('RickRollRadar by /r/Toffrox')
+r = praw.Reddit(
+    client_id=client_id,
+    client_secret=client_secret,
+    password=password,
+    username=username,
+    user_agent=user_agent
+)
 
 subreddits = "all"
 for s in blacklist:
