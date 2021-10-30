@@ -5,7 +5,7 @@ import os
 from rickroll_list import links
 from blacklist import blacklist
 
-stats = [1134092, 10]
+stats = [3993228, 10]
 
 r = praw.Reddit(
     client_id=os.environ['client_id'],
