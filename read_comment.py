@@ -24,7 +24,7 @@ while True:
             print("Remaining: " + str(r.auth.limits['remaining']) + " Comments reviewed: " + str(stats[0]) + " Rickrolls: " +  str(stats[1]))
             for l in links:
                 if l in comment.body:
-                    if comment.author == "RickRollRadar" or "bot" in comment.author.lower() or comment.subreddit.name.lower() not in blacklist:
+                    if comment.author == "RickRollRadar" or "bot" in str(comment.author).lower() or str(comment.subreddit).lower() not in blacklist:
                         break
                     print("Detected Rickroll: ")
                     print(comment.body)
