@@ -1,4 +1,4 @@
-blacklist = [
+blacklist = {
     "anime", 
     "asianamerican", 
     "askhistorians", 
@@ -66,5 +66,5 @@ blacklist = [
     "ps2ceres",
     "duelingcorner",
     "bmw"
-]
+}
 

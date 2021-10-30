@@ -5,7 +5,7 @@ import os
 from rickroll_list import links
 from blacklist import blacklist
 
-stats = [1133718, 10]
+stats = [1134092, 10]
 
 r = praw.Reddit(
     client_id=os.environ['client_id'],
@@ -15,11 +15,7 @@ r = praw.Reddit(
     user_agent=os.environ['user_agent']
 )
 
-subreddits = "all"
-for s in blacklist:
-    subreddits = subreddits + "-" + s
-
-subreddit = r.subreddit(subreddits)
+subreddit = r.subreddit("all")
 
 while True:
     try:
@@ -28,7 +24,7 @@ while True:
             print("Remaining: " + str(r.auth.limits['remaining']) + " Comments reviewed: " + str(stats[0]) + " Rickrolls: " +  str(stats[1]))
             for l in links:
                 if l in comment.body:
-                    if comment.author == "RickRollRadar" or "bot" in comment.author:
+                    if comment.author == "RickRollRadar" or "bot" in comment.author.lower() or comment.subreddit.name.lower() not in blacklist:
                         break
                     print("Detected Rickroll: ")
                     print(comment.body)
