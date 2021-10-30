@@ -29,6 +29,7 @@ blacklist = [
     "pics", 
     "pigs", 
     "politicaldiscussion", 
+    "politicalhumor"
     "politics", 
     "programmingcirclejerk", 
     "raerthdev", 
