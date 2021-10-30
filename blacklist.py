@@ -18,6 +18,7 @@ blacklist = [
     "giraffes", 
     "grindsmygears", 
     "indianfetish", 
+    "latestagecapitalism",
     "me_irl", 
     "misc", 
     "movies", 
